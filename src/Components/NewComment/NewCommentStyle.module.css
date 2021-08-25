@@ -1,0 +1,15 @@
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.add{
+    width: 60px;
+}
+.container{
+    border: 1px solid blue;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
