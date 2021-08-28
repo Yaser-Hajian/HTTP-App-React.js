@@ -4,36 +4,47 @@ import FullComment from "../FullComment/FullComment";
 import NewComment from "../NewComment/NewComment";
 import styles from './DiscussionStyle.module.css'
 import axios from "axios";
+
 const Discussion = () => {
-    const [comments , setComments] = useState(null);
-    useEffect(()=>{
+    const [comments, setComments] = useState(null);
+    const [clickedComment, setClickedComment] = useState("");
+    useEffect(() => {
         axios.get("https://jsonplaceholder.typicode.com/comments")
-            .then((response)=>{
-                setComments(response.data.slice(0,4))})
-            .catch((error)=>{
-                console.log(error)})
-    },[])
+            .then((response) => {
+                setComments(response.data.slice(0, 4))
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }, [])
     return (
         <div className={styles.container}>
             <div className={styles.comments}>
                 {
                     comments ?
                         (comments.map(c => {
-                          return  <Comment name={c.name} email={c.email} key={c.id}/>
+                            return <Comment
+                                name={c.name}
+                                email={c.email}
+                                key={c.id}
+                                clickHandler={() => setClickedComment(c)}
+                            />
                         }))
                         :
                         (<p>loading comments ...</p>)
                 }
             </div>
             <div>
-                <FullComment
-                    name={"Yaser Hajian"}
-                    email={"yaser email"}
-                    body={"the body of yaser`s email"}
-                />
+                {
+                    clickedComment ?
+                        (<FullComment clickedComment={clickedComment}/>)
+                        :
+                        (<p>choose one of the comments</p>)
+                }
+
             </div>
             <div>
-                <NewComment />
+                <NewComment/>
             </div>
         </div>
     );
