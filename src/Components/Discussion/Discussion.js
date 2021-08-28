@@ -17,8 +17,17 @@ const Discussion = () => {
                 console.log(error)
             })
     }, [])
-    const addNewCommentHandler=()=>{
-        console.log("ran")
+    const changeCommentsHandler=()=>{
+        axios.get("http://localhost:3001/comments")
+            .then((response) => {
+                setComments(response.data)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+    const reloadAfterDeleteHandler=()=>{
+        setClickedComment("");
         axios.get("http://localhost:3001/comments")
             .then((response) => {
                 setComments(response.data)
@@ -47,14 +56,14 @@ const Discussion = () => {
             <div>
                 {
                     clickedComment ?
-                        (<FullComment clickedComment={clickedComment}/>)
+                        (<FullComment clickedComment={clickedComment} reloadHandler={reloadAfterDeleteHandler}/>)
                         :
                         (<p>choose one of the comments</p>)
                 }
 
             </div>
             <div>
-                <NewComment addNewCommentHandler={addNewCommentHandler}/>
+                <NewComment addNewCommentHandler={changeCommentsHandler}/>
             </div>
         </div>
     );
