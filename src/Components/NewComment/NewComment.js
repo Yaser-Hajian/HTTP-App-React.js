@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import styles from './NewCommentStyle.module.css'
 import axios from "axios";
 
-const NewComment = () => {
-    const [newComment, setNewComment] = useState({name: "", email: "", content: ""});
+const NewComment = ({addNewCommentHandler}) => {
+    const [newComment, setNewComment] = useState({name: "", email: "", body: ""});
     const changeHandler = (event)=>{
         setNewComment({...newComment , [event.target.name] : event.target.value});
     }
@@ -13,13 +13,14 @@ const NewComment = () => {
             alert("please enter your name");
         }else if (newComment.email === ""){
             alert("please enter your email");
-        }else if (newComment.content === ""){
-            alert("please enter the content on new comment");
+        }else if (newComment.body === ""){
+            alert("please enter the body of new comment");
         }else {
-            axios.post("https://jsonplaceholder.typicode.com/comments" , newComment)
-                .then(response => console.log(response))
+            axios.post("http://localhost:3001/comments" , newComment)
+                .then(response => addNewCommentHandler())
                 .catch(error => console.log(error))
-            setNewComment({name: "" ,email: "",content: ""})
+            setNewComment({name: "" ,email: "",body: ""})
+
         }
     }
     return (
@@ -42,9 +43,9 @@ const NewComment = () => {
                 <span><label>context:</label>
                     <input type="text"
                            placeholder={"context"}
-                           name={"content"}
+                           name={"body"}
                            onChange={changeHandler}
-                           value={newComment.content}/>
+                           value={newComment.body}/>
                 </span>
                 <button className={styles.add} type={"submit"}>ADD</button>
             </form>
