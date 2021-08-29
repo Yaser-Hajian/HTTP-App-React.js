@@ -50,7 +50,7 @@ const NewComment = ({addNewCommentHandler}) => {
                            value={newComment.email}/>
                 </span>
                 <span><label>context:</label>
-                    <input type="text"
+                    <textarea type="text"
                            placeholder={"context"}
                            name={"body"}
                            onChange={changeHandler}

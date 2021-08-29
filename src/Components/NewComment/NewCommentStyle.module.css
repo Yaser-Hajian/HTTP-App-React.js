@@ -13,3 +13,32 @@ form{
     margin-top: 10px;
     border-radius: 5px;
 }
+input{
+    width: 200px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid black;
+    margin-left: 5px;
+}
+span{
+    margin-bottom :5px;
+    display: flex;
+    align-items: flex-start;
+}
+label{
+    text-align: center;
+}
+textarea{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border:1px solid black;
+    margin-left: 5px;
+}
+.add{
+    width:70px;
+    padding: 10px 10px;
+    border-radius: 5px;
+    color: white;
+    background-color:#22C55E;
+    border: none;
+}
