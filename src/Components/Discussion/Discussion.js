@@ -3,13 +3,12 @@ import Comment from "../Comment/Comment";
 import FullComment from "../FullComment/FullComment";
 import NewComment from "../NewComment/NewComment";
 import styles from './DiscussionStyle.module.css'
-import axios from "axios";
-
+import http from "../../Services/httpService";
 const Discussion = () => {
     const [comments, setComments] = useState(null);
     const [clickedComment, setClickedComment] = useState("");
     useEffect(() => {
-        axios.get("http://localhost:3001/comments")
+        http.get("/comments")
             .then((response) => {
                 setComments(response.data)
             })
@@ -18,7 +17,7 @@ const Discussion = () => {
             })
     }, [])
     const changeCommentsHandler=()=>{
-        axios.get("http://localhost:3001/comments")
+        http.get("/comments")
             .then((response) => {
                 setComments(response.data)
             })
@@ -28,7 +27,7 @@ const Discussion = () => {
     }
     const reloadAfterDeleteHandler=()=>{
         setClickedComment("");
-        axios.get("http://localhost:3001/comments")
+        http.get("/comments")
             .then((response) => {
                 setComments(response.data)
             })

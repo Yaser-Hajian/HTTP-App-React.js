@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import styles from './NewCommentStyle.module.css'
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from "axios";
+import http from "../../Services/httpService";
 
 const NewComment = ({addNewCommentHandler}) => {
     const [newComment, setNewComment] = useState({name: "", email: "", body: ""});
@@ -12,17 +12,14 @@ const NewComment = ({addNewCommentHandler}) => {
     const submitHandler = (event)=>{
         event.preventDefault();
         if (newComment.name === ""){
-            // alert("please enter your name");
             toast.warning("please enter your name");
             console.log("warning")
         }else if (newComment.email === ""){
-            // alert("please enter your email");
             toast.warning("please enter your email");
         }else if (newComment.body === ""){
-            // alert("please enter the body of new comment");
             toast.warning("please enter the body of new comment");
         }else {
-            axios.post("http://localhost:3001/comments" , newComment)
+            http.post("/comments" , newComment)
                 .then(response => addNewCommentHandler())
                 .catch(error => console.log(error))
             toast.success("your new comment added successfully");
