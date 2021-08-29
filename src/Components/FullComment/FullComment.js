@@ -1,11 +1,17 @@
 import React from 'react';
 import styles from './FullCommentStyle.module.css'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 const FullComment = ({clickedComment , reloadHandler}) => {
     const deleteHandler =()=>{
         axios.delete("http://localhost:3001/comments/"+clickedComment.id)
-            .then(res => reloadHandler())
+            .then(res => {
+                reloadHandler();
+                toast.info("the comment has been deleted");
+            })
             .catch(error => console.log(error))
+
     }
     return (
         <div className={styles.container}>
