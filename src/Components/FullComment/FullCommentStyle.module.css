@@ -2,4 +2,15 @@
     border: 1px solid #0475b3;
     border-radius: 5px;
     margin-top: 10px;
+    color: #0284C7;
+    background-color: #BAE6FD;
+}
+.delete{
+    width:60px;
+    padding:7px 10px;
+    color: red;
+    background-color: white;
+    border-radius:5px;
+    border: 1px solid red;
+    margin-bottom: 10px;
 }

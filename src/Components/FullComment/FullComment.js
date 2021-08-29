@@ -18,7 +18,7 @@ const FullComment = ({clickedComment , reloadHandler}) => {
             <p>name: {clickedComment.name}</p>
             <p>email: {clickedComment.email}</p>
             <p>body: {clickedComment.body}</p>
-            <button onClick={deleteHandler}>Delete</button>
+            <button onClick={deleteHandler} className={styles.delete}>Delete</button>
         </div>
     );
 };
